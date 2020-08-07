@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
+import 'package:noticias_app/src/pages/tabs_page.dart';
+import 'package:noticias_app/src/services/news_service.dart';
+import 'package:noticias_app/src/theme/tema.dart';
+import 'package:provider/provider.dart';
  
 void main() => runApp(MyApp());
  
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Material App',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Material App Bar'),
-        ),
-        body: Center(
-          child: Container(
-            child: Text('Hello World'),
-          ),
-        ),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => new NewService())
+      ],
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Material App',
+        theme: miTema,
+        home: TabsPage()
       ),
     );
   }
